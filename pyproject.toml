@@ -1,7 +1,9 @@
 [project]
 name = "dg_experiment"
-requires-python = ">=3.9,<3.13"
 version = "0.1.0"
+description = "A experiment project with the new `dg` cli and related tooling for Dagster"
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
 dependencies = [
     "dagster==1.10.19",
 ]
