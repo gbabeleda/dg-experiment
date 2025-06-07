@@ -5,13 +5,36 @@ description = "A experiment project with the new `dg` cli and related tooling fo
 readme = "README.md"
 requires-python = ">=3.9,<3.13"
 dependencies = [
+    "boto3>=1.38.32",
     "dagster==1.10.19",
+    "dagster-cloud[serverless]>=1.10.19",
+    "dagster-dbt>=0.26.19",
+    "dbt-postgres>=1.9.0",
+    "google-api-python-client>=2.171.0",
+    "httpx>=0.28.1",
+    "polars>=1.30.0",
+    "pydantic>=2.11.5",
+    "pyspark>=4.0.0",
+    "python-dotenv>=1.1.0",
+    "sqlalchemy>=2.0.41",
 ]
 
-[dependency-groups]
+[project.optional-dependencies]
+ci = [
+    "mypy>=1.16.0",
+    "pytest>=8.4.0",
+    "ruff>=0.11.13",
+]
 dev = [
-    "dagster-webserver",
-    "dagster-dg-cli[local]",
+    "dagster-dg-cli[local]>=1.10.19",
+    "dagster-webserver>=1.10.19",
+    "ipykernel>=6.29.5",
+    "pre-commit>=4.2.0",
+    "ruff>=0.11.13",
+]
+test = [
+    "mypy>=1.16.0",
+    "pytest>=8.4.0",
 ]
 
 [build-system]
@@ -25,6 +48,14 @@ directory_type = "project"
 root_module = "dg_experiment"
 autoload_defs = true
 
-
 [tool.dg.project.python_environment]
 active = true
+
+# Ruff
+[tool.ruff.lint]
+# Add the isort
+extend-select = ["I"]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore `E402` (import violations) in all `__init__.py` files
+"__init__.py" = ["E402"]
