@@ -18,14 +18,39 @@ uv tool install create-dagster
 Create a dg-project
 ```bash
 uvx create-dagster project dg-experiment
-git init
 ```
 
 Setup other configurations
+- Setup git repository `git init`
 - Setup `.gitignore`
 - Setup `README.md`
 - Update `pyproject.toml`
 
+Optional: Create definitions.py
+
+Add dependencies
+```bash
+uv add package --extra optional-dependency # dagster-cloud[serverless]
+uv add package --optional optional-dependency-group # Add to [project.optional-dependencies] dev
+```
+
+Install dependencies
+```bash
+uv sync --all-extras # For all dependency groups
+uv sync --all-extras --no-extra ci # For all dependency groups excluding specific group
+uv sync --extra dependency-group # For a specific group
+uv sync --extra ci # Install ci on CI/CD
+```
+
+Check dependencies
+```bash
+uv tree
+```
+
+Activate pre-commit hooks
+```bash
+uv run pre-commit install
+```
 
 
 ### Notes
